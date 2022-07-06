@@ -105,6 +105,7 @@ const createGameBoard = () => {
             cards[cardOne].removeEventListener("click", flipCards);
             cards[cardTwo].removeEventListener("click", flipCards);
             number++;
+            result.textContent = number
             cardsMatched.push(chosenCards)
 
         } else {
@@ -120,7 +121,7 @@ const createGameBoard = () => {
             const button = document.createElement("button");
             document.body.appendChild(button);
             button.textContent = "Play again";
-            button.classList.add("button")
+            button.classList.add("button");
             button.addEventListener("click", () => {
                 document.location.reload();
             })
