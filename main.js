@@ -70,6 +70,8 @@ const cardsMatched = [];
 
 const board = document.querySelector("#grid");
 const result = document.querySelector("#result");
+let number = 0;
+result.textContent = number;
 
 const createGameBoard = () => {
     for (let i = 0; i<cardsArray.length; i++){
@@ -96,11 +98,13 @@ const createGameBoard = () => {
         // }
 
         if(chosenCards[0] == chosenCards[1]) {
+            
             cards[cardOne].setAttribute("src", "gallery/white.png");
             cards[cardTwo].setAttribute("src", "gallery/white.png");
 
             cards[cardOne].removeEventListener("click", flipCards);
             cards[cardTwo].removeEventListener("click", flipCards);
+            number++;
             cardsMatched.push(chosenCards)
 
         } else {
@@ -112,8 +116,15 @@ const createGameBoard = () => {
         chosenCards = [];
         cardsChosenIds = [];
         if(cardsMatched.length === cardsArray.length/2 ) {
-            result.textContent = "Znalazłeś wszystkie pary!"
-            
+            result.textContent = "Znalazłeś wszystkie pary!";
+            const button = document.createElement("button");
+            document.body.appendChild(button);
+            button.textContent = "Play again";
+            button.classList.add("button")
+            button.addEventListener("click", () => {
+                document.location.reload();
+            })
+
         }
         
     }
@@ -129,17 +140,9 @@ const createGameBoard = () => {
         this.setAttribute("src", cardsArray[cardId].img);
         // wywołaj funkcję checkMatch if length array[] chosenCards = 2:::
         if (chosenCards.length === 2) {
-            setTimeout(checkMatch, 500);
+            setTimeout(checkMatch, 100);
         }
     }
-
-
-
-
-
-
-
-
 
 
 
